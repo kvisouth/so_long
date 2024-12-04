@@ -6,7 +6,7 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:34:17 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/04 19:01:03 by kevisout         ###   ########.fr       */
+/*   Updated: 2024/12/04 19:08:23 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,8 @@ int	parsing(int ac, char **av, t_parse *parse)
 		return (0);
 	if (!fill_content(parse))
 		return (0);
+	// if (!parse_content(parse))
+	// 	return (0);
 	return (1);
 }
 
