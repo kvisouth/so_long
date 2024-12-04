@@ -6,7 +6,7 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 12:44:05 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/04 17:57:10 by kevisout         ###   ########.fr       */
+/*   Updated: 2024/12/04 18:12:06 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,27 +116,4 @@ char	*get_next_line(int fd)
 			return (line);
 	}
 	return (NULL);
-}
-
-#include <stdio.h>
-#include <fcntl.h>
-int main(int ac, char **av)
-{
-	int i = 0;
-	char *line;
-	if (ac == 2)
-	{
-		int fd = open("test", O_RDONLY);
-		while (i < atoi(av[1]))
-		{
-			line = get_next_line(fd);
-			printf("%d: %s\n", i, line);
-			free(line);
-			i++;
-		}
-		while ((line = get_next_line(fd)) != NULL)
-			free(line);
-		close(fd);
-	}
-	return 0;
 }
