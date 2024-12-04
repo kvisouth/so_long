@@ -6,7 +6,7 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 12:19:08 by kevisout          #+#    #+#             */
-/*   Updated: 2024/08/17 23:51:14 by kevisout         ###   ########.fr       */
+/*   Updated: 2024/12/04 17:47:46 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,11 @@
 /* DEBUG */
 # include <stdio.h>
 # include <string.h>
+
+/* BUFFER_SIZE FOR GNL */
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 
 /* LINKED LIST DATA STRUCTURE */
 typedef struct s_list
@@ -84,5 +89,10 @@ int		ft_lstsize(t_list *lst);
 void	ft_lstdelone(t_list *lst, void (*del)(void*));
 void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
+
+/* GET_NEXT_LINE */
+char	*get_next_line(int fd);
+char	*ft_strjoin_gnl(const char *s1, const char *s2);
+char	*ft_cutstr(char *str);
 
 #endif
