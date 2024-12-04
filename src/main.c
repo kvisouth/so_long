@@ -6,7 +6,7 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:34:17 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/04 18:56:23 by kevisout         ###   ########.fr       */
+/*   Updated: 2024/12/04 19:01:03 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	parse_file_exist(char *str, t_parse *parse)
 		return (0);
 	parse->fd = fd;
 	parse->file = str;
-	return (1); 	
+	return (1);
 }
 
 int	count_lines_in_file(int fd, t_parse *parse)
