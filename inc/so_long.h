@@ -6,7 +6,7 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:34:59 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/05 13:11:46 by kevisout         ###   ########.fr       */
+/*   Updated: 2024/12/05 15:39:19 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,11 @@ typedef struct s_parse
 {
 	int		fd;
 	int		lines;
-	int		width;
-	int		height;
 	char	*file;
 	char	**content;
+	int		p;
+	int		c;
+	int		e;
 }	t_parse;
 
 // typedef struct s_game
