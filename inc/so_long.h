@@ -6,7 +6,7 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:34:59 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/05 15:39:19 by kevisout         ###   ########.fr       */
+/*   Updated: 2024/12/05 17:53:47 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,14 @@ typedef struct s_parse
 // 	int		height;
 
 // }	t_map;
+
+/* PARSING */
+int		parse_args(char **str, t_parse *parse);
+int		parse_map_walls(t_parse *parse);
+int		parse_map_info(t_parse *parse);
+
+/* PARSING UTILS */
+int		fill_content(t_parse *parse);
+void	free_tabs(char **tab);
 
 #endif
