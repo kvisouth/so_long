@@ -6,11 +6,20 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:34:17 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/04 19:08:23 by kevisout         ###   ########.fr       */
+/*   Updated: 2024/12/05 15:25:41 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
+
+int	reset_get_next_line(t_parse *parse)
+{
+	close(parse->fd);
+	parse->fd = open(parse->file, O_RDONLY);
+	if (parse->fd == -1)
+		return (0);
+	return (1);
+}
 
 /* Check si notre argument finit par .ber */
 int	parse_suffix(char *str)
@@ -49,9 +58,7 @@ int	count_lines_in_file(int fd, t_parse *parse)
 	while (get_next_line(fd))
 		line++;
 	parse->lines = line;
-	close(fd);
-	fd = open(parse->file, O_RDONLY);
-	if (fd == -1)
+	if (!reset_get_next_line(parse))
 		return (0);
 	return (1);
 }
@@ -60,7 +67,6 @@ int	count_lines_in_file(int fd, t_parse *parse)
 int	fill_content(t_parse *parse)
 {
 	int		i;
-	char	*tmp;
 	char	**content;
 
 	if (!count_lines_in_file(parse->fd, parse))
@@ -68,21 +74,77 @@ int	fill_content(t_parse *parse)
 	content = malloc(sizeof(char *) * (parse->lines + 1));
 	if (!content)
 		return (0);
-	tmp = NULL;
 	i = 0;
-	tmp = get_next_line(parse->fd);
-	while (i < parse->lines - 1)
+	while (i < parse->lines)
 	{
-		tmp = ft_strjoin(tmp, get_next_line(parse->fd));
-		if (!tmp)
+		content[i] = get_next_line(parse->fd);
+		if (!content[i])
 			return (0);
 		i++;
 	}
-	content = ft_split(tmp, '\n');
-	if (!content)
+	if (!reset_get_next_line(parse))
 		return (0);
+	content[i] = NULL;
 	parse->content = content;
-	free(tmp);
+	return (1);
+}
+
+/* Check si la map est fermee */
+int	parse_map_closed(t_parse *parse)
+{
+	int	i;
+
+	i = 0;
+	while (parse->content[0][i] != '\n')
+	{
+		if (parse->content[0][i] != '1')
+			return (0);
+		i++;
+	}
+	i = 0;
+	while (i < parse->lines)
+	{
+		if ((parse->content[i][0] != '1')
+			|| (parse->content[i][ft_strlen(parse->content[i]) - 2] != '1'))
+			return (0);
+		i++;
+	}
+	i = 0;
+	while (parse->content[parse->lines - 1][i] != '\n')
+	{
+		if (parse->content[parse->lines - 1][i] != '1')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+/* Check si la map est rectangle (Toutes les lignes sont de la meme longueur) */
+int	parse_map_rectangle(t_parse *parse)
+{
+	int	i;
+	int len;
+
+	i = 0;
+	len = ft_strlen(parse->content[0]);
+	while (i < parse->lines)
+	{
+		if ((int)ft_strlen(parse->content[i]) != len)
+			return (0);
+		i++;
+	}
+	if (parse->content[parse->lines] != NULL)
+		return (0);
+	return (1);
+}
+
+/* Check si la map est valide (La forme + si elle est fermee) */
+int	parse_map_walls(t_parse *parse)
+{
+	if (!parse_map_rectangle(parse))
+		return (0);
+	if (!parse_map_closed(parse))
+		return (0);
 	return (1);
 }
 
@@ -96,7 +158,9 @@ int	parsing(int ac, char **av, t_parse *parse)
 		return (0);
 	if (!fill_content(parse))
 		return (0);
-	// if (!parse_content(parse))
+	if (!parse_map_walls(parse))
+		return (0);
+	// if (!parse_map_info(parse))
 	// 	return (0);
 	return (1);
 }
@@ -107,5 +171,11 @@ int	main(int ac, char **av)
 
 	if (!parsing(ac, av, &parse))
 		return (write(2, "Error\n", 6), 1);
-	return (write(1, "tout est clair ☝️\n", 18), 0);
+	int i = 0;
+	while (i < parse.lines)
+	{
+		printf("%s", parse.content[i]);
+		i++;
+	}
+	return (0);
 }
