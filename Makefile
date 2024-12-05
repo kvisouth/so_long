@@ -1,4 +1,8 @@
-SRC		=	src/main.c
+SRC		=	src/parsing_args.c \
+			src/main.c \
+			src/parsing_utils.c \
+			src/parsing_walls.c \
+			src/parsing_elem.c \
 
 NAME	= so_long
 CC		= cc
