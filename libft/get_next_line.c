@@ -6,114 +6,129 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 12:44:05 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/04 18:12:06 by kevisout         ###   ########.fr       */
+/*   Updated: 2024/12/05 18:30:11 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/* Verifie si 'str' contient '\n' : 1 si oui, -1 si non. */
-int	check_nl(char *str)
+char	*ft_strjoin_gnl(char *left_str, char *buff)
 {
-	int	i;
+	size_t	i;
+	size_t	j;
+	char	*str;
+
+	if (!left_str)
+	{
+		left_str = (char *)malloc(1 * sizeof(char));
+		left_str[0] = '\0';
+	}
+	if (!left_str || !buff)
+		return (NULL);
+	str = malloc(sizeof(char) * ((ft_strlen_gnl(left_str) + ft_strlen_gnl(buff)) + 1));
+	if (str == NULL)
+		return (NULL);
+	i = -1;
+	j = 0;
+	if (left_str)
+		while (left_str[++i] != '\0')
+			str[i] = left_str[i];
+	while (buff[j] != '\0')
+		str[i++] = buff[j++];
+	str[ft_strlen_gnl(left_str) + ft_strlen_gnl(buff)] = '\0';
+	free(left_str);
+	return (str);
+}
+
+char	*ft_get_line(char *left_str)
+{
+	int		i;
+	char	*str;
 
 	i = 0;
+	if (!left_str[i])
+		return (NULL);
+	while (left_str[i] && left_str[i] != '\n')
+		i++;
+	str = (char *)malloc(sizeof(char) * (i + 2));
 	if (!str)
-		return (-1);
-	while (str[i])
+		return (NULL);
+	i = 0;
+	while (left_str[i] && left_str[i] != '\n')
 	{
-		if (str[i] == '\n')
-			return (1);
+		str[i] = left_str[i];
 		i++;
 	}
-	return (-1);
-}
-
-/* Retourne une ligne complete jusqu'a \n ou jusqu'a EOF depuis stash */
-char	*fill_line(char **stash, int ret)
-{
-	char	*line;
-
-	if (ret < BUFFER_SIZE && check_nl(*stash) == -1)
+	if (left_str[i] == '\n')
 	{
-		line = ft_substr(*stash, 0, ft_strlen(*stash));
-		if (!line)
-			return (NULL);
-		return (free(*stash), *stash = NULL, line);
+		str[i] = left_str[i];
+		i++;
 	}
-	else if (check_nl(*stash) == 1)
+	str[i] = '\0';
+	return (str);
+}
+
+char	*ft_new_left_str(char *left_str)
+{
+	int		i;
+	int		j;
+	char	*str;
+
+	i = 0;
+	while (left_str[i] && left_str[i] != '\n')
+		i++;
+	if (!left_str[i])
 	{
-		line = ft_substr(*stash, 0, ft_strchr(*stash, '\n') - *stash + 1);
-		if (!line)
-			return (NULL);
-		return (*stash = ft_cutstr(*stash), line);
+		free(left_str);
+		return (NULL);
 	}
-	return (NULL);
+	str = (char *)malloc(sizeof(char) * (ft_strlen_gnl(left_str) - i + 1));
+	if (!str)
+		return (NULL);
+	i++;
+	j = 0;
+	while (left_str[i])
+		str[j++] = left_str[i++];
+	str[j] = '\0';
+	free(left_str);
+	return (str);
 }
 
-/* Initialise stash avec les premieres donnees lues depuis le fichier */
-char	*init_stash(char *stash, int fd, char *buffer)
+char	*ft_read_to_left_str(int fd, char *left_str)
 {
-	int		ret;
+	char	*buff;
+	int		rd_bytes;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+	buff = malloc((BUFFER_SIZE + 1) * sizeof(char));
+	if (!buff)
 		return (NULL);
-	buffer = malloc(BUFFER_SIZE + 1);
-	if (!buffer)
-		return (NULL);
-	ret = read(fd, buffer, BUFFER_SIZE);
-	if (ret <= 0 && stash == NULL)
-		return (free(buffer), NULL);
-	buffer[ret] = '\0';
-	if (!stash)
-		stash = ft_substr(buffer, 0, ft_strlen(buffer));
-	else
-		stash = ft_strjoin(stash, buffer);
-	free(buffer);
-	if (stash[0] == '\0')
-		return (free(stash), stash = NULL, NULL);
-	return (stash);
+	rd_bytes = 1;
+	while (!ft_strchr_gnl(left_str, '\n') && rd_bytes != 0)
+	{
+		rd_bytes = read(fd, buff, BUFFER_SIZE);
+		if (rd_bytes == -1)
+		{
+			free(buff);
+			return (NULL);
+		}
+		buff[rd_bytes] = '\0';
+		left_str = ft_strjoin_gnl(left_str, buff);
+	}
+	free(buff);
+	return (left_str);
 }
 
-/* Lit les donnees depuis le fichier et les ajoute a stash */
-char	*read_buffer(int fd, char *stash, int *ret)
-{
-	char	*buffer;
-
-	buffer = malloc(BUFFER_SIZE + 1);
-	if (!buffer)
-		return (NULL);
-	*ret = read(fd, buffer, BUFFER_SIZE);
-	if (*ret == -1)
-		return (free(buffer), NULL);
-	buffer[*ret] = '\0';
-	stash = ft_strjoin(stash, buffer);
-	if (!stash)
-		return (free(buffer), NULL);
-	return (free(buffer), stash);
-}
-
-/* Recupere la prochaine ligne d'un fichier (fd) */
 char	*get_next_line(int fd)
 {
-	static char	*stash;
-	char		*buffer;
 	char		*line;
-	int			ret;
+	static char	*left_str;
 
-	buffer = NULL;
-	ret = 0;
-	stash = init_stash(stash, fd, buffer);
-	if (!stash)
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (0);
+	left_str = ft_read_to_left_str(fd, left_str);
+	if (!left_str)
 		return (NULL);
-	while (stash)
-	{
-		stash = read_buffer(fd, stash, &ret);
-		if (!stash)
-			return (NULL);
-		line = fill_line(&stash, ret);
-		if (line)
-			return (line);
-	}
-	return (NULL);
+	line = ft_get_line(left_str);
+	left_str = ft_new_left_str(left_str);
+	return (line);
 }

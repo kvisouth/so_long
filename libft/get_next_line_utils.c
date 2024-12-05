@@ -6,53 +6,38 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 17:12:45 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/04 17:57:08 by kevisout         ###   ########.fr       */
+/*   Updated: 2024/12/05 18:29:24 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/* Le meme ft_strjoin que la libft a la difference qu'il free 's1' a la fin */
-char	*ft_strjoin_gnl(char const *s1, char const *s2)
+size_t	ft_strlen_gnl(char *s)
 {
-	int		i;
-	int		j;
-	int		k;
-	char	*ret;
+	size_t	i;
 
-	ret = malloc ((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
-	if (!ret)
-		return (NULL);
-	k = 0;
 	i = 0;
-	while (s1[i])
-		ret[k++] = s1[i++];
-	j = 0;
-	while (s2[j])
-		ret[k++] = s2[j++];
-	ret[k] = '\0';
-	free((char *)s1);
-	return (ret);
+	if (!s)
+		return (0);
+	while (s[i] != '\0')
+		i++;
+	return (i);
 }
 
-/* Coupe 'str' depuis '\n' et retourne ce qu'il y a apres. */
-char	*ft_cutstr(char *str)
+char	*ft_strchr_gnl(char *s, int c)
 {
-	char	*ret;
-	int		i;
-	int		j;
+	int	i;
 
 	i = 0;
-	j = 0;
-	while (str[i] != '\n')
+	if (!s)
+		return (0);
+	if (c == '\0')
+		return ((char *)&s[ft_strlen(s)]);
+	while (s[i] != '\0')
+	{
+		if (s[i] == (char) c)
+			return ((char *)&s[i]);
 		i++;
-	ret = malloc(ft_strlen(str) - i + 1);
-	if (!ret)
-		return (NULL);
-	i++;
-	while (str[i])
-		ret[j++] = str[i++];
-	ret[j] = '\0';
-	free(str);
-	return (ret);
+	}
+	return (0);
 }
