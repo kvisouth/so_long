@@ -6,7 +6,7 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:34:59 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/06 17:13:50 by kevisout         ###   ########.fr       */
+/*   Updated: 2024/12/06 19:30:42 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,56 +19,8 @@
 # include <unistd.h>
 # include "../libft/libft.h"
 # include "../minilibx-linux/mlx.h"
+# include "structures.h"
 
-typedef struct s_parse
-{
-	int				fd;
-	int				lines;
-	int				p;
-	int				c;
-	int				e;
-	int				player_x;
-	int				player_y;
-	int				exit_x;
-	int				exit_y;
-	char			*file;
-	char			**content;
-	char			**mapx;
-}	t_parse;
-
-typedef struct s_texture
-{
-	void	*img;
-	char	*path;
-	int		width;
-	int		height;
-}	t_texture;
-
-typedef struct s_player
-{
-	int		x;
-	int		y;
-	int		hp;
-	int		moves;
-	int		coins;
-}	t_player;
-
-typedef struct s_map
-{
-	int		width;
-	int		height;
-	char	**map;
-}	t_map;
-
-typedef struct s_game
-{
-	void		*mlx;
-	void		*win;
-	int			coins;
-	int			exit_status;
-	t_map		map;
-	t_player	player;
-}	t_game;
 
 /* PARSING */
 int		parse_args(char **str, t_parse *parse);
