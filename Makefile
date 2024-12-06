@@ -3,6 +3,7 @@ SRC		=	src/parsing_args.c \
 			src/parsing_utils.c \
 			src/parsing_walls.c \
 			src/parsing_elem.c \
+			src/parsing_path.c \
 
 NAME	= so_long
 CC		= cc
