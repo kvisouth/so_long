@@ -4,6 +4,9 @@ SRC		=	src/parsing_args.c \
 			src/parsing_walls.c \
 			src/parsing_elem.c \
 			src/parsing_path.c \
+			src/init_var.c \
+			src/init_textures.c \
+			src/init_textures_mlx.c \
 
 NAME	= so_long
 CC		= cc
