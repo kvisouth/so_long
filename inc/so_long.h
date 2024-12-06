@@ -6,7 +6,7 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:34:59 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/06 19:31:20 by kevisout         ###   ########.fr       */
+/*   Updated: 2024/12/06 19:37:36 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,14 @@ int		fill_content(t_parse *parse);
 void	free_tabs(char **tab);
 void	print_map(char **map);
 
+/* INIT */
+int		init(t_parse *parse, t_game *game);
+
+/* INIT TEXTURES */
+void	put_exit(t_game *game);
+void	put_player(t_game *game);
+void	put_coins(t_game *game);
+void	put_background(t_game *game);
+void	put_walls(t_game *game);
+int		init_textures(t_game *game);
 #endif
