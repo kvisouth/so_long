@@ -6,7 +6,7 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:34:59 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/06 14:08:17 by kevisout         ###   ########.fr       */
+/*   Updated: 2024/12/06 17:13:50 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,22 +36,39 @@ typedef struct s_parse
 	char			**mapx;
 }	t_parse;
 
-// typedef struct s_game
-// {
-// 	int		x;
-// 	int		y;
-// 	int		player;
-// 	int		collectible;
-// 	int		exit;
-// }	t_game;
+typedef struct s_texture
+{
+	void	*img;
+	char	*path;
+	int		width;
+	int		height;
+}	t_texture;
 
-// typedef struct s_map
-// {
-// 	char	**map;
-// 	int		width;
-// 	int		height;
+typedef struct s_player
+{
+	int		x;
+	int		y;
+	int		hp;
+	int		moves;
+	int		coins;
+}	t_player;
 
-// }	t_map;
+typedef struct s_map
+{
+	int		width;
+	int		height;
+	char	**map;
+}	t_map;
+
+typedef struct s_game
+{
+	void		*mlx;
+	void		*win;
+	int			coins;
+	int			exit_status;
+	t_map		map;
+	t_player	player;
+}	t_game;
 
 /* PARSING */
 int		parse_args(char **str, t_parse *parse);

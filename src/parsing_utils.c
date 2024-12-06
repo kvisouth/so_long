@@ -6,7 +6,7 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 16:14:52 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/06 12:35:28 by kevisout         ###   ########.fr       */
+/*   Updated: 2024/12/06 16:02:12 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,18 @@ int	fill_content(t_parse *parse)
 	content[i] = NULL;
 	parse->content = content;
 	return (close(parse->fd), 1);
+}
+
+/* Sers a afficher la map */
+void	print_map(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+	{
+		printf("%s", map[i]);
+		i++;
+	}
+	printf("\n");
 }
