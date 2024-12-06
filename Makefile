@@ -24,7 +24,7 @@ OBJ		= $(SRC:.c=.o)
 			$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME):	$(LIBFT) $(MLX) $(OBJ)
-			$(CC) $(CFLAGS) -o $(NAME) $(OBJ) -L$(LIBFT_DIR) -lft
+			$(CC) $(CFLAGS) -o $(NAME) $(OBJ) -L$(LIBFT_DIR) -lft $(MLX) -lXext -lX11
 
 $(LIBFT):
 			$(MAKE) -C $(LIBFT_DIR)
