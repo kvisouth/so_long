@@ -6,7 +6,7 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:34:59 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/06 19:30:42 by kevisout         ###   ########.fr       */
+/*   Updated: 2024/12/06 19:31:20 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # include "../libft/libft.h"
 # include "../minilibx-linux/mlx.h"
 # include "structures.h"
-
 
 /* PARSING */
 int		parse_args(char **str, t_parse *parse);
