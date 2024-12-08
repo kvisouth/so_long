@@ -6,7 +6,7 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 19:30:22 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/06 19:30:33 by kevisout         ###   ########.fr       */
+/*   Updated: 2024/12/08 04:16:13 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ typedef struct s_map
 {
 	int		width;
 	int		height;
+	int		exit_x;
+	int		exit_y;
 	char	**map;
 }	t_map;
 

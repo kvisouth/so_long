@@ -6,7 +6,7 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 19:36:45 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/08 03:27:47 by kevisout         ###   ########.fr       */
+/*   Updated: 2024/12/08 04:34:51 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,17 @@
 
 void	put_walls(t_game *game)
 {
-	t_texture	wall;
+	t_texture	w;
+	int			fd;
 	int			i;
 	int			j;
 
-	wall.path = "./assets/wall.xpm";
-	wall.img = mlx_xpm_file_to_image(game->mlx, wall.path, &wall.width,
-			&wall.height);
+	w.path = "./assets/wall.xpm";
+	fd = open(w.path, O_RDONLY);
+	if (fd < 0)
+		return ;
+	close(fd);
+	w.img = mlx_xpm_file_to_image(game->mlx, w.path, &w.width, &w.height);
 	i = 0;
 	while (i < game->map.height)
 	{
@@ -28,24 +32,28 @@ void	put_walls(t_game *game)
 		while (j < game->map.width)
 		{
 			if (game->map.map[i][j] == '1')
-				mlx_put_image_to_window(game->mlx, game->win, wall.img,
+				mlx_put_image_to_window(game->mlx, game->win, w.img,
 					j * 64, i * 64);
 			j++;
 		}
 		i++;
 	}
-	mlx_destroy_image(game->mlx, wall.img);
+	mlx_destroy_image(game->mlx, w.img);
 }
 
 void	put_coins(t_game *game)
 {
-	t_texture	wall;
+	t_texture	w;
+	int			fd;
 	int			i;
 	int			j;
 
-	wall.path = "./assets/coin.xpm";
-	wall.img = mlx_xpm_file_to_image(game->mlx, wall.path, &wall.width,
-			&wall.height);
+	w.path = "./assets/coin.xpm";
+	fd = open(w.path, O_RDONLY);
+	if (fd < 0)
+		return ;
+	close(fd);
+	w.img = mlx_xpm_file_to_image(game->mlx, w.path, &w.width, &w.height);
 	i = 0;
 	while (i < game->map.height)
 	{
@@ -53,24 +61,28 @@ void	put_coins(t_game *game)
 		while (j < game->map.width)
 		{
 			if (game->map.map[i][j] == 'C')
-				mlx_put_image_to_window(game->mlx, game->win, wall.img,
+				mlx_put_image_to_window(game->mlx, game->win, w.img,
 					j * 64, i * 64);
 			j++;
 		}
 		i++;
 	}
-	mlx_destroy_image(game->mlx, wall.img);
+	mlx_destroy_image(game->mlx, w.img);
 }
 
 void	put_player(t_game *game)
 {
-	t_texture	wall;
+	t_texture	w;
+	int			fd;
 	int			i;
 	int			j;
 
-	wall.path = "./assets/goblin.xpm";
-	wall.img = mlx_xpm_file_to_image(game->mlx, wall.path, &wall.width,
-			&wall.height);
+	w.path = "./assets/goblin.xpm";
+	fd = open(w.path, O_RDONLY);
+	if (fd < 0)
+		return ;
+	close(fd);
+	w.img = mlx_xpm_file_to_image(game->mlx, w.path, &w.width, &w.height);
 	i = 0;
 	while (i < game->map.height)
 	{
@@ -78,24 +90,28 @@ void	put_player(t_game *game)
 		while (j < game->map.width)
 		{
 			if (game->map.map[i][j] == 'P')
-				mlx_put_image_to_window(game->mlx, game->win, wall.img,
+				mlx_put_image_to_window(game->mlx, game->win, w.img,
 					j * 64, i * 64);
 			j++;
 		}
 		i++;
 	}
-	mlx_destroy_image(game->mlx, wall.img);
+	mlx_destroy_image(game->mlx, w.img);
 }
 
 void	put_background(t_game *game)
 {
-	t_texture	wall;
+	t_texture	w;
+	int			fd;
 	int			i;
 	int			j;
 
-	wall.path = "./assets/back.xpm";
-	wall.img = mlx_xpm_file_to_image(game->mlx, wall.path, &wall.width,
-			&wall.height);
+	w.path = "./assets/back.xpm";
+	fd = open(w.path, O_RDONLY);
+	if (fd < 0)
+		return ;
+	close(fd);
+	w.img = mlx_xpm_file_to_image(game->mlx, w.path, &w.width, &w.height);
 	i = 0;
 	while (i < game->map.height)
 	{
@@ -103,38 +119,35 @@ void	put_background(t_game *game)
 		while (j < game->map.width)
 		{
 			if (game->map.map[i][j] == '0')
-				mlx_put_image_to_window(game->mlx, game->win, wall.img,
+				mlx_put_image_to_window(game->mlx, game->win, w.img,
 					j * 64, i * 64);
 			j++;
 		}
 		i++;
 	}
-	mlx_destroy_image(game->mlx, wall.img);
+	mlx_destroy_image(game->mlx, w.img);
 }
 
 void	put_exit(t_game *game)
 {
-	t_texture	wall;
-	int			i;
-	int			j;
+	t_texture	w;
+	int			fd;
 
-	wall.path = "./assets/door_closed.xpm";
+	w.path = "./assets/door_closed.xpm";
+	fd = open(w.path, O_RDONLY);
+	if (fd < 0)
+		return ;
+	close(fd);
 	if (game->exit_status == 1)
-		wall.path = "./assets/door_open.xpm";
-	wall.img = mlx_xpm_file_to_image(game->mlx, wall.path, &wall.width,
-			&wall.height);
-	i = 0;
-	while (i < game->map.height)
 	{
-		j = 0;
-		while (j < game->map.width)
-		{
-			if (game->map.map[i][j] == 'E')
-				mlx_put_image_to_window(game->mlx, game->win, wall.img,
-					j * 64, i * 64);
-			j++;
-		}
-		i++;
+		w.path = "./assets/door_open.xpm";
+		fd = open(w.path, O_RDONLY);
+		if (fd < 0)
+			return ;
+		close(fd);
 	}
-	mlx_destroy_image(game->mlx, wall.img);
+	w.img = mlx_xpm_file_to_image(game->mlx, w.path, &w.width, &w.height);
+	mlx_put_image_to_window(game->mlx, game->win, w.img,
+		game->map.exit_x * 64, game->map.exit_y * 64);
+	mlx_destroy_image(game->mlx, w.img);
 }

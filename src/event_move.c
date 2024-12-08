@@ -6,7 +6,7 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 03:01:38 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/08 03:53:40 by kevisout         ###   ########.fr       */
+/*   Updated: 2024/12/08 04:31:46 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,18 @@ int	move_up(t_game *game)
 {
 	get_player_pos(game);
 	if (game->map.map[game->player.y - 1][game->player.x] == '0'
-		|| game->map.map[game->player.y - 1][game->player.x] == 'C'
-		|| game->map.map[game->player.y - 1][game->player.x] == 'E')
+		|| game->map.map[game->player.y - 1][game->player.x] == 'C')
 	{
 		if (game->map.map[game->player.y - 1][game->player.x] == 'C')
 			game->player.coins++;
-		else if (game->map.map[game->player.y - 1][game->player.x] == 'E')
-		{
-			if (game->exit_status == 1)
-				end_game(game);
-		}
 		game->map.map[game->player.y][game->player.x] = '0';
 		game->map.map[game->player.y - 1][game->player.x] = 'P';
 		game->player.y--;
+	}
+	else if (game->map.map[game->player.y - 1][game->player.x] == 'E')
+	{
+		if (game->exit_status == 1)
+			end_game(game);
 	}
 	ft_putnbr_fd(game->player.moves++, 1);
 	write(1, "\n", 1);
@@ -41,19 +40,18 @@ int	move_down(t_game *game)
 {
 	get_player_pos(game);
 	if (game->map.map[game->player.y + 1][game->player.x] == '0'
-		|| game->map.map[game->player.y + 1][game->player.x] == 'C'
-		|| game->map.map[game->player.y + 1][game->player.x] == 'E')
+		|| game->map.map[game->player.y + 1][game->player.x] == 'C')
 	{
 		if (game->map.map[game->player.y + 1][game->player.x] == 'C')
 			game->player.coins++;
-		else if (game->map.map[game->player.y + 1][game->player.x] == 'E')
-		{
-			if (game->exit_status == 1)
-				end_game(game);
-		}
 		game->map.map[game->player.y][game->player.x] = '0';
 		game->map.map[game->player.y + 1][game->player.x] = 'P';
 		game->player.y++;
+	}
+	else if (game->map.map[game->player.y + 1][game->player.x] == 'E')
+	{
+		if (game->exit_status == 1)
+			end_game(game);
 	}
 	ft_putnbr_fd(game->player.moves++, 1);
 	write(1, "\n", 1);
@@ -65,19 +63,18 @@ int	move_left(t_game *game)
 {
 	get_player_pos(game);
 	if (game->map.map[game->player.y][game->player.x - 1] == '0'
-		|| game->map.map[game->player.y][game->player.x - 1] == 'C'
-		|| game->map.map[game->player.y][game->player.x - 1] == 'E')
+		|| game->map.map[game->player.y][game->player.x - 1] == 'C')
 	{
 		if (game->map.map[game->player.y][game->player.x - 1] == 'C')
 			game->player.coins++;
-		else if (game->map.map[game->player.y][game->player.x - 1] == 'E')
-		{
-			if (game->exit_status == 1)
-				end_game(game);
-		}
 		game->map.map[game->player.y][game->player.x] = '0';
 		game->map.map[game->player.y][game->player.x - 1] = 'P';
 		game->player.x--;
+	}
+	else if (game->map.map[game->player.y][game->player.x - 1] == 'E')
+	{
+		if (game->exit_status == 1)
+			end_game(game);
 	}
 	ft_putnbr_fd(game->player.moves++, 1);
 	write(1, "\n", 1);
@@ -89,19 +86,18 @@ int	move_right(t_game *game)
 {
 	get_player_pos(game);
 	if (game->map.map[game->player.y][game->player.x + 1] == '0'
-		|| game->map.map[game->player.y][game->player.x + 1] == 'C'
-		|| game->map.map[game->player.y][game->player.x + 1] == 'E')
+		|| game->map.map[game->player.y][game->player.x + 1] == 'C')
 	{
 		if (game->map.map[game->player.y][game->player.x + 1] == 'C')
 			game->player.coins++;
-		else if (game->map.map[game->player.y][game->player.x + 1] == 'E')
-		{
-			if (game->exit_status == 1)
-				end_game(game);
-		}
 		game->map.map[game->player.y][game->player.x] = '0';
 		game->map.map[game->player.y][game->player.x + 1] = 'P';
 		game->player.x++;
+	}
+	else if (game->map.map[game->player.y][game->player.x + 1] == 'E')
+	{
+		if (game->exit_status == 1)
+			end_game(game);
 	}
 	ft_putnbr_fd(game->player.moves++, 1);
 	write(1, "\n", 1);
