@@ -6,7 +6,7 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 19:36:45 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/06 19:36:50 by kevisout         ###   ########.fr       */
+/*   Updated: 2024/12/08 03:27:47 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,8 @@ void	put_exit(t_game *game)
 	int			j;
 
 	wall.path = "./assets/door_closed.xpm";
+	if (game->exit_status == 1)
+		wall.path = "./assets/door_open.xpm";
 	wall.img = mlx_xpm_file_to_image(game->mlx, wall.path, &wall.width,
 			&wall.height);
 	i = 0;
