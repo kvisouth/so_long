@@ -6,12 +6,13 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 03:03:15 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/08 03:53:58 by kevisout         ###   ########.fr       */
+/*   Updated: 2024/12/08 04:39:22 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
+/* Actualise la position du joueur */
 int	get_player_pos(t_game *game)
 {
 	int	i;
@@ -35,6 +36,7 @@ int	get_player_pos(t_game *game)
 	return (1);
 }
 
+/* Fonction pour free tout et fermer le programme */
 int	end_game(t_game *game)
 {
 	mlx_clear_window(game->mlx, game->win);
