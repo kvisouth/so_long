@@ -6,7 +6,7 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 19:34:24 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/08 04:17:01 by kevisout         ###   ########.fr       */
+/*   Updated: 2024/12/08 05:14:01 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	init(t_parse *parse, t_game *game)
 	game->map.map = parse->content;
 	game->map.exit_x = parse->exit_x;
 	game->map.exit_y = parse->exit_y;
-	printf("Exit position: %d, %d\n", game->map.exit_x, game->map.exit_y);
 	game->mlx = mlx_init();
 	if (!game->mlx)
 		return (0);

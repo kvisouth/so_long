@@ -6,7 +6,7 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:34:17 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/08 03:52:00 by kevisout         ###   ########.fr       */
+/*   Updated: 2024/12/08 05:08:33 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,10 @@ int	update_game(t_game *game)
 {
 	if (game->player.coins == game->coins)
 		game->exit_status = 1;
-	put_exit(game);
 	put_background(game);
+	put_coins(game);
 	put_player(game);
+	put_exit(game);
 	return (0);
 }
 
