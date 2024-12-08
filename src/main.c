@@ -6,7 +6,7 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:34:17 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/08 03:27:26 by kevisout         ###   ########.fr       */
+/*   Updated: 2024/12/08 03:52:00 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int	parsing(int ac, char **av, t_parse *parse)
 /* Cette fonction est appliquee a toute les frames du jeu */
 int	update_game(t_game *game)
 {
-	printf("exit_status: %d\n", game->exit_status);
 	if (game->player.coins == game->coins)
 		game->exit_status = 1;
 	put_exit(game);
@@ -63,5 +62,5 @@ int	main(int ac, char **av)
 	if (!hooks(&game))
 		return (write(2, "Error\n", 6), 1);
 	mlx_loop(game.mlx);
-	return (free_tabs(parse.content), 0);
+	return (0);
 }

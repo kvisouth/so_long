@@ -6,7 +6,7 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 03:01:38 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/08 03:34:31 by kevisout         ###   ########.fr       */
+/*   Updated: 2024/12/08 03:53:40 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	move_up(t_game *game)
 		else if (game->map.map[game->player.y - 1][game->player.x] == 'E')
 		{
 			if (game->exit_status == 1)
-				exit(0);
+				end_game(game);
 		}
 		game->map.map[game->player.y][game->player.x] = '0';
 		game->map.map[game->player.y - 1][game->player.x] = 'P';
@@ -49,7 +49,7 @@ int	move_down(t_game *game)
 		else if (game->map.map[game->player.y + 1][game->player.x] == 'E')
 		{
 			if (game->exit_status == 1)
-				exit(0);
+				end_game(game);
 		}
 		game->map.map[game->player.y][game->player.x] = '0';
 		game->map.map[game->player.y + 1][game->player.x] = 'P';
@@ -73,7 +73,7 @@ int	move_left(t_game *game)
 		else if (game->map.map[game->player.y][game->player.x - 1] == 'E')
 		{
 			if (game->exit_status == 1)
-				exit(0);
+				end_game(game);
 		}
 		game->map.map[game->player.y][game->player.x] = '0';
 		game->map.map[game->player.y][game->player.x - 1] = 'P';
@@ -97,7 +97,7 @@ int	move_right(t_game *game)
 		else if (game->map.map[game->player.y][game->player.x + 1] == 'E')
 		{
 			if (game->exit_status == 1)
-				exit(0);
+				end_game(game);
 		}
 		game->map.map[game->player.y][game->player.x] = '0';
 		game->map.map[game->player.y][game->player.x + 1] = 'P';
@@ -112,7 +112,7 @@ int	move_right(t_game *game)
 int	handle_keypress(int keycode, t_game *game)
 {
 	if (keycode == XK_Escape)
-		exit(0);
+		end_game(game);
 	else if (keycode == XK_w || keycode == XK_Up)
 		move_up(game);
 	else if (keycode == XK_s || keycode == XK_Down)
