@@ -6,12 +6,13 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 19:36:45 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/08 04:34:51 by kevisout         ###   ########.fr       */
+/*   Updated: 2024/12/08 04:38:20 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
+/* "Dessine" la texture walls.xpm sur la fenetre la ou y'a des '1' sur la map */
 void	put_walls(t_game *game)
 {
 	t_texture	w;
@@ -41,6 +42,7 @@ void	put_walls(t_game *game)
 	mlx_destroy_image(game->mlx, w.img);
 }
 
+/* "Dessine" la texture coin.xpm sur la fenetre la ou y'a des 'C' sur la map */
 void	put_coins(t_game *game)
 {
 	t_texture	w;
@@ -70,6 +72,7 @@ void	put_coins(t_game *game)
 	mlx_destroy_image(game->mlx, w.img);
 }
 
+/* "Dessine" la texture goblin.xpm sur la fenetre la ou y'a 'P' sur la map */
 void	put_player(t_game *game)
 {
 	t_texture	w;
@@ -99,6 +102,7 @@ void	put_player(t_game *game)
 	mlx_destroy_image(game->mlx, w.img);
 }
 
+/* "Dessine" la texture back.xpm sur la fenetre la ou y'a des '0' sur la map */
 void	put_background(t_game *game)
 {
 	t_texture	w;
@@ -128,6 +132,7 @@ void	put_background(t_game *game)
 	mlx_destroy_image(game->mlx, w.img);
 }
 
+/* Dessine la porte de sortie ouverte/fermee sur le 'E' de la map */
 void	put_exit(t_game *game)
 {
 	t_texture	w;
