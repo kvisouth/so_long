@@ -6,13 +6,16 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:34:17 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/10 19:31:42 by kevisout         ###   ########.fr       */
+/*   Updated: 2024/12/10 19:37:48 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
 /* Verifie si l'input utilisateur + la map est valide */
+/*  Ajouter ca pour ajouter un check map trop grosse  */
+/*	if ((int)ft_strlen(parse->content[0]) - 1 > 30 || parse->lines > 15)
+		return (0); 												  */
 int	parsing(int ac, char **av, t_parse *parse)
 {
 	if (ac != 2)
@@ -26,8 +29,6 @@ int	parsing(int ac, char **av, t_parse *parse)
 	if (!parse_map_info(parse))
 		return (0);
 	if (!parse_path(parse))
-		return (0);
-	if ((int)ft_strlen(parse->content[0]) - 1 > 30 || parse->lines > 15)
 		return (0);
 	return (1);
 }
