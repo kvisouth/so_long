@@ -6,7 +6,7 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:34:17 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/10 18:14:26 by kevisout         ###   ########.fr       */
+/*   Updated: 2024/12/10 19:01:48 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,11 @@ int	main(int ac, char **av)
 	t_game	game;
 
 	if (!parsing(ac, av, &parse))
-		return (write(2, "Error\n", 6), 1);
+		return (write(2, "Error\n", 6), free_tabs(parse.content), 1);
 	if (!init(&parse, &game))
-		return (write(2, "Error\n", 6), 1);
+		return (write(2, "Error\n", 6), free_tabs(parse.content), 1);
 	if (!hooks(&game))
-		return (write(2, "Error\n", 6), 1);
+		return (write(2, "Error\n", 6), free_tabs(parse.content), 1);
 	mlx_loop(game.mlx);
 	return (0);
 }

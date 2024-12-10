@@ -6,7 +6,7 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 19:34:24 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/10 18:13:26 by kevisout         ###   ########.fr       */
+/*   Updated: 2024/12/10 19:05:20 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	init(t_parse *parse, t_game *game)
 	game->player.x = parse->player_x;
 	game->player.y = parse->player_y;
 	game->player.hp = 100;
-	game->player.moves = 0;
+	game->player.moves = 1;
 	game->player.coins = 0;
 	game->coins = parse->c;
 	game->clock = 0;
