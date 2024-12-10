@@ -19,9 +19,9 @@
 int	parsing(int ac, char **av, t_parse *parse)
 {
 	if (ac != 2)
-		return (0);
+		return(write(2, "Error\n", 6), exit(1), 0);
 	if (!parse_args(av, parse))
-		return (0);
+		return (write(2, "Error\n", 6), exit(1), 0);
 	if (!fill_content(parse))
 		return (0);
 	if (!parse_map_walls(parse))
