@@ -6,7 +6,7 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 19:36:45 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/10 18:44:07 by kevisout         ###   ########.fr       */
+/*   Updated: 2024/12/10 18:49:40 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void	put_background(t_game *game)
 	mlx_destroy_image(game->mlx, w.img);
 }
 
+/* Ouvre la porte avec une petite animation */
 void	open_door_animation(t_game *game)
 {
 	t_texture	w;

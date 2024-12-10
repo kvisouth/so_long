@@ -6,12 +6,13 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 18:43:30 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/10 18:43:53 by kevisout         ###   ########.fr       */
+/*   Updated: 2024/12/10 18:50:01 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
+/* Goblin qui respire */
 void	init_goblin_textures(t_texture *w)
 {
 	w->sprite[0] = "./assets/gob_0.xpm";

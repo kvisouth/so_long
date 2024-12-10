@@ -6,12 +6,13 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 18:44:10 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/10 18:45:07 by kevisout         ###   ########.fr       */
+/*   Updated: 2024/12/10 18:50:13 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
+/* Pieces qui sautillent */
 void	init_coins_textures(t_texture *w)
 {
 	w->sprite[0] = "./assets/coin0.xpm";
