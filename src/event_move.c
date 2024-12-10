@@ -6,7 +6,7 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 03:01:38 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/10 19:07:11 by kevisout         ###   ########.fr       */
+/*   Updated: 2024/12/10 19:28:20 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int	move_up(t_game *game)
 		game->map.map[game->player.y][game->player.x] = '0';
 		game->map.map[game->player.y - 1][game->player.x] = 'P';
 		game->player.y--;
+		ft_putnbr_fd(game->player.moves++, 1);
+		write(1, "\n", 1);
 	}
 	else if (game->map.map[game->player.y - 1][game->player.x] == 'E')
 	{
@@ -34,8 +36,6 @@ int	move_up(t_game *game)
 			end_game(game);
 		}
 	}
-	ft_putnbr_fd(game->player.moves++, 1);
-	write(1, "\n", 1);
 	return (1);
 }
 
@@ -51,6 +51,8 @@ int	move_down(t_game *game)
 		game->map.map[game->player.y][game->player.x] = '0';
 		game->map.map[game->player.y + 1][game->player.x] = 'P';
 		game->player.y++;
+		ft_putnbr_fd(game->player.moves++, 1);
+		write(1, "\n", 1);
 	}
 	else if (game->map.map[game->player.y + 1][game->player.x] == 'E')
 	{
@@ -61,8 +63,6 @@ int	move_down(t_game *game)
 			end_game(game);
 		}
 	}
-	ft_putnbr_fd(game->player.moves++, 1);
-	write(1, "\n", 1);
 	return (1);
 }
 
@@ -78,6 +78,8 @@ int	move_left(t_game *game)
 		game->map.map[game->player.y][game->player.x] = '0';
 		game->map.map[game->player.y][game->player.x - 1] = 'P';
 		game->player.x--;
+		ft_putnbr_fd(game->player.moves++, 1);
+		write(1, "\n", 1);
 	}
 	else if (game->map.map[game->player.y][game->player.x - 1] == 'E')
 	{
@@ -88,8 +90,6 @@ int	move_left(t_game *game)
 			end_game(game);
 		}
 	}
-	ft_putnbr_fd(game->player.moves++, 1);
-	write(1, "\n", 1);
 	return (1);
 }
 
@@ -105,6 +105,8 @@ int	move_right(t_game *game)
 		game->map.map[game->player.y][game->player.x] = '0';
 		game->map.map[game->player.y][game->player.x + 1] = 'P';
 		game->player.x++;
+		ft_putnbr_fd(game->player.moves++, 1);
+		write(1, "\n", 1);
 	}
 	else if (game->map.map[game->player.y][game->player.x + 1] == 'E')
 	{
@@ -115,8 +117,6 @@ int	move_right(t_game *game)
 			end_game(game);
 		}
 	}
-	ft_putnbr_fd(game->player.moves++, 1);
-	write(1, "\n", 1);
 	return (1);
 }
 
