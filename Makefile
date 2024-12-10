@@ -7,6 +7,8 @@ SRC		=	src/parsing_args.c \
 			src/init_var.c \
 			src/init_textures.c \
 			src/init_textures_mlx.c \
+			src/init_textures_player.c \
+			src/init_textures_coins.c \
 			src/event_move.c \
 			src/event_utils.c \
 
