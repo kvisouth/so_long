@@ -6,7 +6,7 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 19:34:24 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/08 05:14:01 by kevisout         ###   ########.fr       */
+/*   Updated: 2024/12/10 18:13:26 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,10 @@ int	init(t_parse *parse, t_game *game)
 	game->player.moves = 0;
 	game->player.coins = 0;
 	game->coins = parse->c;
+	game->clock = 0;
+	game->x = 0;
 	game->exit_status = 0;
+	game->door_status = 0;
 	game->map.height = parse->lines;
 	game->map.width = ft_strlen(parse->content[0]) - 1;
 	game->map.map = parse->content;

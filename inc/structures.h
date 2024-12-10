@@ -6,7 +6,7 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 19:30:22 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/08 04:16:13 by kevisout         ###   ########.fr       */
+/*   Updated: 2024/12/10 18:12:45 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_parse
 
 typedef struct s_texture
 {
+	char	*sprite[8];
 	void	*img;
 	char	*path;
 	int		width;
@@ -57,10 +58,13 @@ typedef struct s_map
 
 typedef struct s_game
 {
+	int			x;
 	void		*mlx;
 	void		*win;
 	int			coins;
 	int			exit_status;
+	int			door_status;
+	int			clock;
 	t_map		map;
 	t_player	player;
 }	t_game;
