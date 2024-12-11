@@ -6,7 +6,7 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 14:07:50 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/06 14:07:58 by kevisout         ###   ########.fr       */
+/*   Updated: 2024/12/11 19:37:46 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,17 +76,15 @@ int	check_solvable(char **map)
 		{
 			if (map[i][j] == 'E')
 			{
-				if (map[i][j + 1] == '0' || map[i][j - 1] == '0'
-					|| map[i + 1][j] == '0' || map[i - 1][j] == '0')
-					return (0);
+				if (map[i + 1][j] == 'X' || map[i - 1][j] == 'X'
+					|| map[i][j + 1] == 'X' || map[i][j - 1] == 'X')
+					return (1);
 			}
-			if (map[i][j] == 'C')
-				return (0);
 			j++;
 		}
 		i++;
 	}
-	return (1);
+	return (0);
 }
 
 /* Remplit la map de 'X' en s'arettant a la vue d'un '1', 'E' ou 'X' */
@@ -110,6 +108,7 @@ int	parse_path(t_parse *parse)
 	if (!parse->mapx)
 		return (0);
 	flood_fill(parse->mapx, parse->player_x, parse->player_y, parse);
+	print_map(parse->mapx);
 	if (!check_solvable(parse->mapx))
 		return (free_tabs(parse->mapx), 0);
 	return (free_tabs(parse->mapx), 1);
