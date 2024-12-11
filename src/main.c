@@ -6,7 +6,7 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:34:17 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/10 19:37:48 by kevisout         ###   ########.fr       */
+/*   Updated: 2024/12/11 19:01:53 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,11 @@ int	update_game(t_game *game)
 	return (0);
 }
 
+/* Gere les hooks */
 int	hooks(t_game *game)
 {
 	mlx_loop_hook(game->mlx, &update_game, game);
+	mlx_hook(game->win, DestroyNotify, 0, &end_game, game);
 	mlx_hook(game->win, KeyPress, KeyPressMask, &handle_keypress, game);
 	return (1);
 }
