@@ -6,7 +6,7 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:34:17 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/11 19:01:53 by kevisout         ###   ########.fr       */
+/*   Updated: 2024/12/11 19:03:29 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 int	parsing(int ac, char **av, t_parse *parse)
 {
 	if (ac != 2)
-		return(write(2, "Error\n", 6), exit(1), 0);
+		return (write(2, "Error\n", 6), exit(1), 0);
 	if (!parse_args(av, parse))
 		return (write(2, "Error\n", 6), exit(1), 0);
 	if (!fill_content(parse))
