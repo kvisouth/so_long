@@ -12,6 +12,20 @@ SRC		=	src/parsing_args.c \
 			src/event_move.c \
 			src/event_utils.c \
 
+SRC_B	=	src_bonus/parsing_args_bonus.c \
+			src_bonus/main_bonus.c \
+			src_bonus/parsing_utils_bonus.c \
+			src_bonus/parsing_walls_bonus.c \
+			src_bonus/parsing_elem_bonus.c \
+			src_bonus/parsing_path_bonus.c \
+			src_bonus/init_var_bonus.c \
+			src_bonus/init_textures_bonus.c \
+			src_bonus/init_textures_mlx_bonus.c \
+			src_bonus/init_textures_player_bonus.c \
+			src_bonus/init_textures_coins_bonus.c \
+			src_bonus/event_move_bonus.c \
+			src_bonus/event_utils_bonus.c \
+
 NAME	= so_long
 CC		= cc
 CFLAGS	= -Wall -Wextra -Werror
@@ -26,6 +40,7 @@ MLX = $(MLX_DIR)/libmlx.a
 
 
 OBJ		= $(SRC:.c=.o)
+OBJ_B	= $(SRC_B:.c=.o)
 
 %.o: %.c
 			$(CC) $(CFLAGS) -c $< -o $@
@@ -41,8 +56,11 @@ $(MLX):
 
 all:		$(NAME)
 
+bonus:		$(LIBFT) $(MLX) $(OBJ_B)
+			$(CC) $(CFLAGS) -o $(NAME) $(OBJ_B) -L$(LIBFT_DIR) -lft $(MLX) -lXext -lX11
+
 clean:
-			$(RM) $(OBJ)
+			$(RM) $(OBJ) $(OBJ_B)
 			$(MAKE) -C $(LIBFT_DIR) clean
 			$(MAKE) -C $(MLX_DIR) clean
 
