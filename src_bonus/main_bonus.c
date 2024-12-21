@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:34:17 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/11 19:03:29 by kevisout         ###   ########.fr       */
+/*   Updated: 2024/12/21 18:28:36 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,18 @@ int	parsing(int ac, char **av, t_parse *parse)
 	return (1);
 }
 
+/* Ecrit le compteur de mouvements dans la fenetre */
+void	write_moves_in_window(t_game *game)
+{
+	char	*moves;
+
+	moves = ft_itoa(game->player.moves);
+	if (game->clock % 2 == 0)
+		put_walls(game);
+	mlx_string_put(game->mlx, game->win, 20, 20, 0x00FFFFFF, moves);
+	free(moves);
+}
+
 /* Cette fonction est appliquee a toute les frames du jeu */
 int	update_game(t_game *game)
 {
@@ -52,6 +64,7 @@ int	update_game(t_game *game)
 	put_coins(game);
 	put_player(game);
 	put_exit(game);
+	write_moves_in_window(game);
 	return (0);
 }
 
