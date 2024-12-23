@@ -6,7 +6,7 @@
 /*   By: kevso <kevso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:34:59 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/23 14:20:02 by kevso            ###   ########.fr       */
+/*   Updated: 2024/12/23 17:10:52 by kevso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,15 @@ int		end_game(t_game *game);
 
 /* BONUSES */
 void	put_enemy(t_game *game);
+int		init_enemies(t_game *game);
+void	get_enemies_nbr(t_game *game);
+void	enemy_move_right(t_game *game, t_enemy *tmp);
+void	enemy_move_left(t_game *game, t_enemy *tmp);
+void	enemy_move_up(t_game *game, t_enemy *tmp);
+void	enemy_move_down(t_game *game, t_enemy *tmp);
+int		ennemy_check_right(t_game *game, t_enemy *tmp);
+int		ennemy_check_left(t_game *game, t_enemy *tmp);
+int		ennemy_check_up(t_game *game, t_enemy *tmp);
+int		ennemy_check_down(t_game *game, t_enemy *tmp);
 
 #endif

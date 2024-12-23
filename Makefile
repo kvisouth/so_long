@@ -19,12 +19,16 @@ SRC_B	=	src_bonus/parsing_args_bonus.c \
 			src_bonus/parsing_elem_bonus.c \
 			src_bonus/parsing_path_bonus.c \
 			src_bonus/init_var_bonus.c \
+			src_bonus/init_enemy_bonus.c \
 			src_bonus/init_textures_bonus.c \
 			src_bonus/init_textures_mlx_bonus.c \
 			src_bonus/init_textures_player_bonus.c \
 			src_bonus/init_textures_coins_bonus.c \
 			src_bonus/event_move_bonus.c \
 			src_bonus/event_utils_bonus.c \
+			src_bonus/event_enemy_bonus.c \
+			src_bonus/event_enemy_checks_bonus.c \
+			src_bonus/event_enemy_moves_bonus.c \
 
 NAME	= so_long
 CC		= cc
