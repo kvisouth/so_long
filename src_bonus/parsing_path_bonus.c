@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_path.c                                     :+:      :+:    :+:   */
+/*   parsing_path_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kevso <kevso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 14:07:50 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/11 19:39:33 by kevisout         ###   ########.fr       */
+/*   Updated: 2024/12/23 17:27:02 by kevso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,8 @@ int	check_solvable(char **map)
 static void	flood_fill(char **map, int x, int y, t_parse *parse)
 {
 	if (y < 0 || x < 0 || y >= parse->lines || x >= (int)ft_strlen(map[y])
-		|| map[y][x] == '1' || map[y][x] == 'E' || map[y][x] == 'X')
+		|| map[y][x] == '1' || map[y][x] == 'E' || map[y][x] == '2'
+		|| map[y][x] == 'X')
 		return ;
 	map[y][x] = 'X';
 	flood_fill(map, x + 1, y, parse);

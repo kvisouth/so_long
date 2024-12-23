@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   event_utils.c                                      :+:      :+:    :+:   */
+/*   event_utils_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kevso <kevso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 03:03:15 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/08 04:39:22 by kevisout         ###   ########.fr       */
+/*   Updated: 2024/12/23 17:21:33 by kevso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,19 @@ int	get_player_pos(t_game *game)
 	return (1);
 }
 
+/* Free la liste chainee des ennemis */
+void	free_enemies(t_enemy *enemies)
+{
+	t_enemy	*tmp;
+
+	while (enemies)
+	{
+		tmp = enemies;
+		enemies = enemies->next;
+		free(tmp);
+	}
+}
+
 /* Fonction pour free tout et fermer le programme */
 int	end_game(t_game *game)
 {
@@ -44,5 +57,7 @@ int	end_game(t_game *game)
 	mlx_destroy_display(game->mlx);
 	free_tabs(game->map.map);
 	free(game->mlx);
+	if (game->enemy)
+		free_enemies(game->enemy);
 	exit(0);
 }

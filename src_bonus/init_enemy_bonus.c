@@ -6,7 +6,7 @@
 /*   By: kevso <kevso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 17:06:27 by kevso             #+#    #+#             */
-/*   Updated: 2024/12/23 17:06:34 by kevso            ###   ########.fr       */
+/*   Updated: 2024/12/23 17:24:06 by kevso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	init_enemies(t_game *game)
 
 	get_enemies_nbr(game);
 	i = game->nbr_enemies;
+	game->enemy = NULL;
 	while (i > 0)
 	{
 		new = malloc(sizeof(t_enemy));
