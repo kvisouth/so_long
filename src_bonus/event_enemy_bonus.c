@@ -6,7 +6,7 @@
 /*   By: kevso <kevso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 13:57:36 by kevso             #+#    #+#             */
-/*   Updated: 2024/12/23 17:05:42 by kevso            ###   ########.fr       */
+/*   Updated: 2024/12/23 17:29:20 by kevso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ void	move_enemies(t_game *game)
 	}
 }
 
+/* Bouge les ennemis (animation + position)*/
 void	put_enemy(t_game *game)
 {
 	anim_enemy(game);
