@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kevso <kevso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 19:30:22 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/10 18:12:45 by kevisout         ###   ########.fr       */
+/*   Updated: 2024/12/23 15:37:28 by kevso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,13 @@ typedef struct s_player
 	int		coins;
 }	t_player;
 
+typedef struct s_enemy
+{
+	int				x;
+	int				y;
+	struct s_enemy	*next;
+}	t_enemy;
+
 typedef struct s_map
 {
 	int		width;
@@ -65,8 +72,10 @@ typedef struct s_game
 	int			exit_status;
 	int			door_status;
 	int			clock;
+	int			nbr_enemies;
 	t_map		map;
 	t_player	player;
+	t_enemy		*enemy;
 }	t_game;
 
 #endif

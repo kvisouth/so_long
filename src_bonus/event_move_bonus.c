@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event_move_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kevso <kevso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 03:01:38 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/21 18:31:37 by kevisout         ###   ########.fr       */
+/*   Updated: 2024/12/23 16:47:18 by kevso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,16 @@ int	move_up(t_game *game)
 		game->player.y--;
 		game->player.moves++;
 	}
-	else if (game->map.map[game->player.y - 1][game->player.x] == 'E')
+	else if (game->map.map[game->player.y - 1][game->player.x] == 'E'
+		|| game->map.map[game->player.y - 1][game->player.x] == '2')
 	{
 		if (game->exit_status == 1)
-		{	
+		{
 			game->player.moves++;
 			end_game(game);
 		}
+		else if (game->map.map[game->player.y - 1][game->player.x] == '2')
+			end_game(game);
 	}
 	return (1);
 }
@@ -51,13 +54,16 @@ int	move_down(t_game *game)
 		game->player.y++;
 		game->player.moves++;
 	}
-	else if (game->map.map[game->player.y + 1][game->player.x] == 'E')
+	else if (game->map.map[game->player.y + 1][game->player.x] == 'E'
+		|| game->map.map[game->player.y + 1][game->player.x] == '2')
 	{
 		if (game->exit_status == 1)
-		{	
+		{
 			game->player.moves++;
 			end_game(game);
 		}
+		else if (game->map.map[game->player.y + 1][game->player.x] == '2')
+			end_game(game);
 	}
 	return (1);
 }
@@ -76,13 +82,16 @@ int	move_left(t_game *game)
 		game->player.x--;
 		game->player.moves++;
 	}
-	else if (game->map.map[game->player.y][game->player.x - 1] == 'E')
+	else if (game->map.map[game->player.y][game->player.x - 1] == 'E'
+		|| game->map.map[game->player.y][game->player.x - 1] == '2')
 	{
 		if (game->exit_status == 1)
-		{	
+		{
 			game->player.moves++;
 			end_game(game);
 		}
+		else if (game->map.map[game->player.y][game->player.x - 1] == '2')
+			end_game(game);
 	}
 	return (1);
 }
@@ -101,13 +110,16 @@ int	move_right(t_game *game)
 		game->player.x++;
 		game->player.moves++;
 	}
-	else if (game->map.map[game->player.y][game->player.x + 1] == 'E')
+	else if (game->map.map[game->player.y][game->player.x + 1] == 'E'
+		|| game->map.map[game->player.y][game->player.x + 1] == '2')
 	{
 		if (game->exit_status == 1)
-		{	
+		{
 			game->player.moves++;
 			end_game(game);
 		}
+		else if (game->map.map[game->player.y][game->player.x + 1] == '2')
+			end_game(game);
 	}
 	return (1);
 }

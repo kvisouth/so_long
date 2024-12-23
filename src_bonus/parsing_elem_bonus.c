@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_elem.c                                     :+:      :+:    :+:   */
+/*   parsing_elem_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kevso <kevso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 16:13:57 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/05 16:14:03 by kevisout         ###   ########.fr       */
+/*   Updated: 2024/12/23 13:44:32 by kevso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int	parse_map_junk(t_parse *parse)
 				&& parse->content[i][j] != 'E'
 				&& parse->content[i][j] != '1'
 				&& parse->content[i][j] != '0'
+				&& parse->content[i][j] != '2'
 				&& parse->content[i][j] != '\n')
 				return (0);
 			j++;

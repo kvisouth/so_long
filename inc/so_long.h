@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kevso <kevso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:34:59 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/08 03:48:09 by kevisout         ###   ########.fr       */
+/*   Updated: 2024/12/23 14:20:02 by kevso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <X11/keysym.h>
 # include "../libft/libft.h"
 # include "../minilibx-linux/mlx.h"
 # include "structures.h"
 # include "X11/X.h"
-# include <X11/keysym.h>
 
 /* PARSING */
 int		parse_args(char **str, t_parse *parse);
@@ -48,6 +48,10 @@ int		init_textures(t_game *game);
 /* GAME-EVENTS */
 int		handle_keypress(int keycode, t_game *game);
 int		get_player_pos(t_game *game);
+int		get_enemy_pos(t_game *game);
 int		end_game(t_game *game);
+
+/* BONUSES */
+void	put_enemy(t_game *game);
 
 #endif

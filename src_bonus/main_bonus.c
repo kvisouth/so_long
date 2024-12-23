@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kevso <kevso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:34:17 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/21 18:28:36 by kevisout         ###   ########.fr       */
+/*   Updated: 2024/12/23 16:36:29 by kevso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int	update_game(t_game *game)
 	put_coins(game);
 	put_player(game);
 	put_exit(game);
+	put_enemy(game);
 	write_moves_in_window(game);
 	return (0);
 }
