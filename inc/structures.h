@@ -6,7 +6,7 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 19:30:22 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/27 17:47:48 by kevisout         ###   ########.fr       */
+/*   Updated: 2024/12/27 18:52:49 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ typedef struct s_game
 	int			door_status;
 	int			clock;
 	int			nbr_enemies;
+	int			finish;
+	pthread_t	thread;
 	t_map		map;
 	t_player	player;
 	t_enemy		*enemy;

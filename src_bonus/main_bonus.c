@@ -6,7 +6,7 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:34:17 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/27 17:45:49 by kevisout         ###   ########.fr       */
+/*   Updated: 2024/12/27 19:11:32 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,23 @@ int	hooks(t_game *game)
 	return (1);
 }
 
+void	*clock_thread(void *arg)
+{
+	t_game	*game;
+
+	game = (t_game *)arg;
+	while (1)
+	{
+		if (game->finish)
+			break ;
+		game->clock++;
+		if (game->clock == 8)
+			game->clock = 0;
+		usleep(100000);
+	}
+	return (NULL);
+}
+
 int	main(int ac, char **av)
 {
 	t_parse	parse;
@@ -87,7 +104,10 @@ int	main(int ac, char **av)
 		return (write(2, "Error\n", 6), free_tabs(parse.content), 1);
 	if (!init(&parse, &game))
 		return (write(2, "Error\n", 6), free_tabs(parse.content), 1);
+	game.finish = 0;
 	if (!hooks(&game))
+		return (write(2, "Error\n", 6), free_tabs(parse.content), 1);
+	if (pthread_create(&game.thread, NULL, &clock_thread, &game))
 		return (write(2, "Error\n", 6), free_tabs(parse.content), 1);
 	mlx_loop(game.mlx);
 	return (0);

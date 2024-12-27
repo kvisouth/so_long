@@ -6,7 +6,7 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:34:59 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/27 17:47:53 by kevisout         ###   ########.fr       */
+/*   Updated: 2024/12/27 18:51:45 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <X11/keysym.h>
+# include <pthread.h>
 # include "../libft/libft.h"
 # include "../minilibx-linux/mlx.h"
 # include "structures.h"

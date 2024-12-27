@@ -6,7 +6,7 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 03:03:15 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/27 17:45:25 by kevisout         ###   ########.fr       */
+/*   Updated: 2024/12/27 18:53:29 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,7 @@ int	end_game(t_game *game)
 	free(game->mlx);
 	if (game->enemy)
 		free_enemies(game->enemy);
+	game->finish = 1;
+	pthread_join(game->thread, NULL);
 	exit(0);
 }

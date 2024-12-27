@@ -6,7 +6,7 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 13:57:36 by kevso             #+#    #+#             */
-/*   Updated: 2024/12/27 17:46:30 by kevisout         ###   ########.fr       */
+/*   Updated: 2024/12/27 19:09:34 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,6 @@ void	put_enemy(t_game *game)
 {
 	anim_enemy(game);
 	get_enemies_pos(game);
-	if (game->x % 300 == 0)
+	if (game->x % 16 == 0)
 		move_enemies(game);
 }
