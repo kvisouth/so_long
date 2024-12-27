@@ -6,7 +6,7 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:34:59 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/27 18:51:45 by kevisout         ###   ########.fr       */
+/*   Updated: 2024/12/27 19:22:24 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,6 @@ int		ennemy_check_right(t_game *game, t_enemy *tmp);
 int		ennemy_check_left(t_game *game, t_enemy *tmp);
 int		ennemy_check_up(t_game *game, t_enemy *tmp);
 int		ennemy_check_down(t_game *game, t_enemy *tmp);
+void	*clock_thread(void *arg);
 
 #endif

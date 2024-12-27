@@ -6,7 +6,7 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:34:17 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/27 19:11:32 by kevisout         ###   ########.fr       */
+/*   Updated: 2024/12/27 19:21:51 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,6 @@ int	update_game(t_game *game)
 		game->x = 0;
 	if (game->player.coins == game->coins)
 		game->exit_status = 1;
-	if (game->x % 50 == 0)
-	{
-		if (game->clock == 7)
-			game->clock = 0;
-		else
-			game->clock++;
-	}
 	put_background(game);
 	put_coins(game);
 	put_player(game);
@@ -76,23 +69,6 @@ int	hooks(t_game *game)
 	mlx_hook(game->win, DestroyNotify, 0, &end_game, game);
 	mlx_hook(game->win, KeyPress, KeyPressMask, &handle_keypress, game);
 	return (1);
-}
-
-void	*clock_thread(void *arg)
-{
-	t_game	*game;
-
-	game = (t_game *)arg;
-	while (1)
-	{
-		if (game->finish)
-			break ;
-		game->clock++;
-		if (game->clock == 8)
-			game->clock = 0;
-		usleep(100000);
-	}
-	return (NULL);
 }
 
 int	main(int ac, char **av)

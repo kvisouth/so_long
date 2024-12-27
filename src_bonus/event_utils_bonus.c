@@ -6,7 +6,7 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 03:03:15 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/27 18:53:29 by kevisout         ###   ########.fr       */
+/*   Updated: 2024/12/27 19:22:02 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,24 @@ int	get_player_pos(t_game *game)
 		i++;
 	}
 	return (1);
+}
+
+/* Thread qui incremente clock de 1 toute les 100ms */
+void	*clock_thread(void *arg)
+{
+	t_game	*game;
+
+	game = (t_game *)arg;
+	while (1)
+	{
+		if (game->finish)
+			break ;
+		game->clock++;
+		if (game->clock == 8)
+			game->clock = 0;
+		usleep(100000);
+	}
+	return (NULL);
 }
 
 /* Free la liste chainee des ennemis */
