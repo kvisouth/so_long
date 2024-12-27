@@ -6,129 +6,63 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 12:44:05 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/05 18:30:11 by kevisout         ###   ########.fr       */
+/*   Updated: 2024/12/27 12:03:15 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin_gnl(char *left_str, char *buff)
+static char	*append_char(char *str, char c, int len)
 {
-	size_t	i;
-	size_t	j;
-	char	*str;
-
-	if (!left_str)
-	{
-		left_str = (char *)malloc(1 * sizeof(char));
-		left_str[0] = '\0';
-	}
-	if (!left_str || !buff)
-		return (NULL);
-	str = malloc(sizeof(char) * ((ft_strlen_gnl(left_str) + ft_strlen_gnl(buff)) + 1));
-	if (str == NULL)
-		return (NULL);
-	i = -1;
-	j = 0;
-	if (left_str)
-		while (left_str[++i] != '\0')
-			str[i] = left_str[i];
-	while (buff[j] != '\0')
-		str[i++] = buff[j++];
-	str[ft_strlen_gnl(left_str) + ft_strlen_gnl(buff)] = '\0';
-	free(left_str);
-	return (str);
-}
-
-char	*ft_get_line(char *left_str)
-{
+	char	*new_str;
 	int		i;
-	char	*str;
 
-	i = 0;
-	if (!left_str[i])
-		return (NULL);
-	while (left_str[i] && left_str[i] != '\n')
-		i++;
-	str = (char *)malloc(sizeof(char) * (i + 2));
-	if (!str)
+	new_str = (char *)malloc(len + 2);
+	if (!new_str)
 		return (NULL);
 	i = 0;
-	while (left_str[i] && left_str[i] != '\n')
+	while (i < len)
 	{
-		str[i] = left_str[i];
+		new_str[i] = str[i];
 		i++;
 	}
-	if (left_str[i] == '\n')
-	{
-		str[i] = left_str[i];
-		i++;
-	}
-	str[i] = '\0';
-	return (str);
+	new_str[i++] = c;
+	new_str[i] = '\0';
+	free(str);
+	return (new_str);
 }
 
-char	*ft_new_left_str(char *left_str)
+static void	init_line_and_len(char **line, int *len)
 {
-	int		i;
-	int		j;
-	char	*str;
-
-	i = 0;
-	while (left_str[i] && left_str[i] != '\n')
-		i++;
-	if (!left_str[i])
-	{
-		free(left_str);
-		return (NULL);
-	}
-	str = (char *)malloc(sizeof(char) * (ft_strlen_gnl(left_str) - i + 1));
-	if (!str)
-		return (NULL);
-	i++;
-	j = 0;
-	while (left_str[i])
-		str[j++] = left_str[i++];
-	str[j] = '\0';
-	free(left_str);
-	return (str);
-}
-
-char	*ft_read_to_left_str(int fd, char *left_str)
-{
-	char	*buff;
-	int		rd_bytes;
-
-	buff = malloc((BUFFER_SIZE + 1) * sizeof(char));
-	if (!buff)
-		return (NULL);
-	rd_bytes = 1;
-	while (!ft_strchr_gnl(left_str, '\n') && rd_bytes != 0)
-	{
-		rd_bytes = read(fd, buff, BUFFER_SIZE);
-		if (rd_bytes == -1)
-		{
-			free(buff);
-			return (NULL);
-		}
-		buff[rd_bytes] = '\0';
-		left_str = ft_strjoin_gnl(left_str, buff);
-	}
-	free(buff);
-	return (left_str);
+	*line = NULL;
+	*len = 0;
 }
 
 char	*get_next_line(int fd)
 {
+	static char	buffer[BUFFER_SIZE];
+	static int	bytes_read = 0;
+	static int	index = 0;
 	char		*line;
-	static char	*left_str;
+	int			len;
 
+	init_line_and_len(&line, &len);
 	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (0);
-	left_str = ft_read_to_left_str(fd, left_str);
-	if (!left_str)
 		return (NULL);
-	line = ft_get_line(left_str);
-	left_str = ft_new_left_str(left_str);
-	return (line);
+	while (1)
+	{
+		if (index >= bytes_read)
+		{
+			bytes_read = read(fd, buffer, BUFFER_SIZE);
+			index = 0;
+			if (bytes_read <= 0)
+				return (line);
+		}
+		while (index < bytes_read)
+		{
+			line = append_char(line, buffer[index], len++);
+			if (buffer[index++] == '\n')
+				return (line);
+		}
+	}
 }

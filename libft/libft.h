@@ -6,7 +6,7 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 12:19:08 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/05 18:29:43 by kevisout         ###   ########.fr       */
+/*   Updated: 2024/12/27 12:02:20 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,5 @@ void	ft_lstiter(t_list *lst, void (*f)(void *));
 
 /* GET_NEXT_LINE */
 char	*get_next_line(int fd);
-char	*ft_strjoin_gnl(char *left_str, char *buff);
-char	*ft_strchr_gnl(char *s, int c);
-size_t	ft_strlen_gnl(char *s);
 
 #endif
