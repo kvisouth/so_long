@@ -6,7 +6,7 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:34:17 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/27 15:53:28 by kevisout         ###   ########.fr       */
+/*   Updated: 2024/12/27 17:45:49 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,13 @@ int	update_game(t_game *game)
 		game->x = 0;
 	if (game->player.coins == game->coins)
 		game->exit_status = 1;
+	if (game->x % 50 == 0)
+	{
+		if (game->clock == 7)
+			game->clock = 0;
+		else
+			game->clock++;
+	}
 	put_background(game);
 	put_coins(game);
 	put_player(game);
@@ -71,26 +78,10 @@ int	hooks(t_game *game)
 	return (1);
 }
 
-void	*clock_thread(void *arg)
-{
-	t_game	*game;
-
-	game = (t_game *)arg;
-	while (1)
-	{
-		usleep(200000);
-		game->clock++;
-		if (game->clock == 7)
-			game->clock = 0;
-	}
-	return (NULL);
-}
-
 int	main(int ac, char **av)
 {
-	t_parse		parse;
-	t_game		game;
-	pthread_t	thread;
+	t_parse	parse;
+	t_game	game;
 
 	if (!parsing(ac, av, &parse))
 		return (write(2, "Error\n", 6), free_tabs(parse.content), 1);
@@ -98,9 +89,6 @@ int	main(int ac, char **av)
 		return (write(2, "Error\n", 6), free_tabs(parse.content), 1);
 	if (!hooks(&game))
 		return (write(2, "Error\n", 6), free_tabs(parse.content), 1);
-	if (pthread_create(&thread, NULL, &clock_thread, &game))
-		return (write(2, "Error\n", 6), free_tabs(parse.content), 1);
 	mlx_loop(game.mlx);
-	pthread_join(thread, NULL);
 	return (0);
 }
