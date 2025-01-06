@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event_enemy_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kevso <kevso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 13:57:36 by kevso             #+#    #+#             */
-/*   Updated: 2024/12/27 19:09:34 by kevisout         ###   ########.fr       */
+/*   Updated: 2025/01/06 15:08:25 by kevso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,6 @@ void	put_enemy(t_game *game)
 {
 	anim_enemy(game);
 	get_enemies_pos(game);
-	if (game->x % 16 == 0)
+	if (game->x % 64 == 0)
 		move_enemies(game);
 }
