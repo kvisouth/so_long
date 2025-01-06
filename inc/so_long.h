@@ -6,7 +6,7 @@
 /*   By: kevso <kevso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:34:59 by kevisout          #+#    #+#             */
-/*   Updated: 2025/01/06 14:31:13 by kevso            ###   ########.fr       */
+/*   Updated: 2025/01/06 15:29:29 by kevso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		parse_path(t_parse *parse);
 int		fill_content(t_parse *parse);
 void	free_tabs(char **tab);
 void	print_map(char **map);
-int     count_coins_in_mapx(char **map);
+int		count_coins_in_mapx(char **map);
 
 /* INIT */
 int		init(t_parse *parse, t_game *game);
