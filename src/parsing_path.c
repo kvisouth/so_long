@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_path.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kevso <kevso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 14:07:50 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/11 19:39:33 by kevisout         ###   ########.fr       */
+/*   Updated: 2025/01/06 14:32:13 by kevso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,15 @@ char	**copy_content(t_parse *parse)
 	return (map);
 }
 
-/* Check grace a la map de flood_fill si 'E' et les 'C' sont accessibles */
+/* Check grace a la map de flood_fill si 'E' est accessible */
 int	check_solvable(char **map)
 {
 	int	i;
 	int	j;
 
 	i = 0;
+	if (count_coins_in_mapx(map) != 0)
+		return (0);
 	while (map[i])
 	{
 		j = 0;
@@ -88,7 +90,7 @@ int	check_solvable(char **map)
 }
 
 /* Remplit la map de 'X' en s'arettant a la vue d'un '1', 'E' ou 'X' */
-static void	flood_fill(char **map, int x, int y, t_parse *parse)
+void	flood_fill(char **map, int x, int y, t_parse *parse)
 {
 	if (y < 0 || x < 0 || y >= parse->lines || x >= (int)ft_strlen(map[y])
 		|| map[y][x] == '1' || map[y][x] == 'E' || map[y][x] == 'X')

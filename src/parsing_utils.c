@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kevso <kevso@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 16:14:52 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/06 16:02:12 by kevisout         ###   ########.fr       */
+/*   Updated: 2025/01/06 14:31:21 by kevso            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,4 +92,27 @@ void	print_map(char **map)
 		i++;
 	}
 	printf("\n");
+}
+
+/* Compte le nombre de pieces dans la map */
+int	count_coins_in_mapx(char **map)
+{
+	int	i;
+	int	j;
+	int	coins;
+
+	i = 0;
+	coins = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == 'C')
+				coins++;
+			j++;
+		}
+		i++;
+	}
+	return (coins);
 }
