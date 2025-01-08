@@ -6,7 +6,7 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 18:43:30 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/10 18:50:01 by kevisout         ###   ########.fr       */
+/*   Updated: 2025/01/08 17:19:51 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void	put_player(t_game *game)
 			{
 				w.img = mlx_xpm_file_to_image(game->mlx, w.sprite[game->clock],
 						&w.width, &w.height);
+				if (w.img == NULL)
+					return ;
 				mlx_put_image_to_window(game->mlx, game->win, w.img,
 					j * 64, i * 64);
 				mlx_destroy_image(game->mlx, w.img);

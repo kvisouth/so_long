@@ -6,7 +6,7 @@
 /*   By: kevisout <kevisout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 19:36:45 by kevisout          #+#    #+#             */
-/*   Updated: 2024/12/27 16:07:55 by kevisout         ###   ########.fr       */
+/*   Updated: 2025/01/08 17:32:23 by kevisout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,13 @@
 void	put_walls(t_game *game)
 {
 	t_texture	w;
-	int			fd;
 	int			i;
 	int			j;
 
 	w.path = "./assets/wall.xpm";
-	fd = open(w.path, O_RDONLY);
-	if (fd < 0)
-		return ;
-	close(fd);
 	w.img = mlx_xpm_file_to_image(game->mlx, w.path, &w.width, &w.height);
+	if (w.img == NULL)
+		return ;
 	i = 0;
 	while (i < game->map.height)
 	{
@@ -46,16 +43,13 @@ void	put_walls(t_game *game)
 void	put_background(t_game *game)
 {
 	t_texture	w;
-	int			fd;
 	int			i;
 	int			j;
 
 	w.path = "./assets/back.xpm";
-	fd = open(w.path, O_RDONLY);
-	if (fd < 0)
-		return ;
-	close(fd);
 	w.img = mlx_xpm_file_to_image(game->mlx, w.path, &w.width, &w.height);
+	if (w.img == NULL)
+		return ;
 	i = 0;
 	while (i < game->map.height)
 	{
@@ -88,6 +82,8 @@ void	open_door_animation(t_game *game)
 	w.sprite[7] = "./assets/door7.xpm";
 	w.img = mlx_xpm_file_to_image(game->mlx, w.sprite[game->clock],
 			&w.width, &w.height);
+	if (w.img == NULL)
+		return ;
 	mlx_put_image_to_window(game->mlx, game->win, w.img,
 		game->map.exit_x * 64, game->map.exit_y * 64);
 	mlx_destroy_image(game->mlx, w.img);
@@ -112,6 +108,8 @@ void	put_exit(t_game *game)
 	if (game->door_status != 1)
 	{
 		w.img = mlx_xpm_file_to_image(game->mlx, w.path, &w.width, &w.height);
+		if (w.img == NULL)
+			return ;
 		mlx_put_image_to_window(game->mlx, game->win, w.img,
 			game->map.exit_x * 64, game->map.exit_y * 64);
 		mlx_destroy_image(game->mlx, w.img);
